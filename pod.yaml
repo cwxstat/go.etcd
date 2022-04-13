@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: etcd
+  labels:
+    app.kubernetes.io/name: etcd
+spec:
+  volumes:
+    - name: config-volume
+      configMap:
+        name: etcd-config
+  containers:
+    - name: test-container
+      image: us-central1-docker.pkg.dev/mchirico/public/etcd:v0.0.1
+      command: ["/bin/etcd"]
+      args: ["--client-cert-auth","--trusted-ca-file",
+      "/etc/config/ca.pem","--cert-file","/etc/config/etcd-certs.pem","--key-file",
+      "/etc/config/etcd-certs-key.pem","--peer-trusted-ca-file","/etc/config/ca.pem",
+      "--advertise-client-urls","https://0.0.0.0:2379","--listen-client-urls","https://0.0.0.0:2379"]
+
+      volumeMounts:
+        - mountPath: /etc/config
+          name: config-volume
+  restartPolicy: Never

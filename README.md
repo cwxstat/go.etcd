@@ -88,3 +88,10 @@ Leave the above running and in a new terminal, run the following:
 --user=root --password=A08auslkdjMMf get foo
 
 ```
+
+# Steps to create configmap
+
+```bash
+kubectl create configmap etcd-config --from-file=./certs/
+
+```

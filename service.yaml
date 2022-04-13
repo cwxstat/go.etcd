@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: etcd
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 32.32.41.2 # Put in your own ip. This is made up
+  selector:
+    app.kubernetes.io/name: etcd
+  ports:
+    - protocol: TCP
+      port: 2379 # or you could use 443 if on GCP
+      targetPort: 2379
