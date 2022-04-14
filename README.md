@@ -100,7 +100,7 @@ kubectl create configmap etcd-config --from-file=./certs/
 # Release Version
 
 ```bash
-git tag -fa v0.0.3 -m "Update v0.0.3 tag"
-git push origin v0.0.3 --force
+git tag -fa v0.0.4 -m "Update v0.0.4 tag"
+git push origin v0.0.4 --force
 
 ```
