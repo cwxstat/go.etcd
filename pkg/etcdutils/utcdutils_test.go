@@ -9,6 +9,53 @@ import (
 	"time"
 )
 
+/*
+To run tests, you must install KinD
+
+Step 1:
+
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.12.0/kind-linux-amd64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+
+
+Step 2:
+
+kind create cluster
+
+
+Step 3:
+
+kubectl create configmap etcd-config --from-file=./certs/
+
+
+Step 4:
+
+kubectl apply -f pod.yaml
+
+
+Step 5:
+
+kubectl port-forward pods/etcd 2379:2379 -n default
+
+
+Step 6:
+
+go run main.go  config 
+
+
+Step 7:
+# From project root
+
+etcdctl --endpoints=127.0.0.1:2379 --cacert=./certs/ca.pem \
+ --cert=./certs/etcd-certs.pem --key=./certs/etcd-certs-key.pem user add root --password=A08auslkdjMMf 
+
+ etcdctl --endpoints=127.0.0.1:2379 --cacert=./certs/ca.pem \
+ --cert=./certs/etcd-certs.pem --key=./certs/etcd-certs-key.pem auth enable 
+
+*/
+
+
 func TestETC_Put(t *testing.T) {
 	e, cancel := NewETC("test")
 	defer cancel()
